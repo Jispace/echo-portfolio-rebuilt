@@ -127,10 +127,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
     setSelectedSlot('');
     setSelectedPlan(resolvePlan(initialPlan));
     setIsSending(false);
-    setBlockedUrl('');
+    setErrorMessage('');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSending || !currentDayConfig || !selectedSlot) return;
     if (slotStartMs(currentDayConfig.key, selectedSlot) <= Date.now()) {
@@ -139,21 +139,26 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
       return;
     }
     setIsSending(true);
-    setBlockedUrl('');
-    const details = [`Formule : ${selectedPlan}`, note.trim()].filter(Boolean).join(' — ');
-    const url = buildCalendlySlotUrl(currentDayConfig.key, selectedSlot, { name: name.trim(), email: email.trim(), note: details });
+    setErrorMessage('');
     const label = `${currentDayConfig.date} à ${selectedSlot.slice(0, 5)}`;
-    window.setTimeout(() => {
-      const win = window.open(url, '_blank', 'noopener');
-      if (!win) {
-        setIsSending(false);
-        setBlockedUrl(url);
-        return;
-      }
+    try {
+      await sendBookingEmail({
+        data: {
+          plan: selectedPlan,
+          name: name.trim(),
+          email: email.trim(),
+          date: currentDayConfig.date,
+          slot: selectedSlot,
+          note: note.trim() || undefined,
+        },
+      });
       resetForm();
-      setSentMessage(`Créneau du ${label} envoyé sur Calendly. Confirmez-le dans l'onglet ouvert.`);
-      window.setTimeout(() => setSentMessage(''), 6000);
-    }, 400);
+      setSentMessage(`Demande envoyée pour le ${label}. Candya vous confirme le créneau par email très vite.`);
+      window.setTimeout(() => setSentMessage(''), 8000);
+    } catch {
+      setIsSending(false);
+      setErrorMessage("L'envoi a échoué. Réessayez, ou réservez directement sur Calendly avec le lien ci-dessus.");
+    }
   };
 
   const handleClose = () => {
