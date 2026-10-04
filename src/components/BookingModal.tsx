@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Check, CheckCircle2, Clock, ShieldCheck, ArrowRight, User, Mail, MessageSquare, ExternalLink, Loader2, AlertTriangle } from 'lucide-react';
 import { servicePlans } from '../data/portfolioData';
 import { useScrollLock } from '../hooks/use-scroll-lock';
+import { sendBookingEmail } from '../lib/contact.functions';
 
 interface BookingModalProps {
   isOpen: boolean;
