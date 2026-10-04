@@ -26,7 +26,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
     role: '',
     needs: '',
   });
-  const [needsHtml, setNeedsHtml] = useState('');
   const [botcheck, setBotcheck] = useState(false);
   const [sending, setSending] = useState(false);
 
