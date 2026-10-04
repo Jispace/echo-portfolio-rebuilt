@@ -63,7 +63,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
       if (res.status === 200 && data?.success) {
         setSubmitted(true);
         setFormData({ name: '', email: '', role: '', needs: '' });
-        setNeedsHtml('');
         setSelectedPlan('');
         setValidationAttempted(false);
       } else {
