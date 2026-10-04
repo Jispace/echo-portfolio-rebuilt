@@ -392,11 +392,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
 
                     <RichTextEditor
                       id="contact-needs"
-                      value={needsHtml}
+                      value=""
                       invalid={needsInvalid}
                       placeholder="Gestion des emails, retard de facturation, suivi des clients..."
-                      onChange={(html, text) => {
-                        setNeedsHtml(html);
+                      onChange={(_html, text) => {
                         setFormData((prev) => ({ ...prev, needs: text }));
                         if (text && errorMessage) setErrorMessage('');
                       }}
