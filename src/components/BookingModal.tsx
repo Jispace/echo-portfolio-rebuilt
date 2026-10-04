@@ -93,7 +93,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
   const [email, setEmail] = useState('');
   const [note, setNote] = useState('');
   const [isSending, setIsSending] = useState(false);
-  const [blockedUrl, setBlockedUrl] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [sentMessage, setSentMessage] = useState('');
 
   useEffect(() => {
