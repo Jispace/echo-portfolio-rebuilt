@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="100%" height="100%">
+  <rect width="1200" height="750" fill="#F5F8FA"/>
+  <rect width="1200" height="48" fill="#2D3E50"/>
+  <circle cx="28" cy="24" r="7" fill="#FF7A59"/>
+  <text x="44" y="29" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="bold">HubSpot CRM</text>
+  <rect x="180" y="10" width="220" height="28" rx="4" fill="#1D2B36"/>
+  <text x="195" y="28" fill="#7C98B6" font-family="sans-serif" font-size="12">Recherche ( / )</text>
+  <rect x="960" y="12" width="85" height="24" rx="4" fill="#00A4BD"/>
+  <text x="972" y="28" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold">Breeze AI</text>
+  <text x="1060" y="28" fill="#CBD6E2" font-family="sans-serif" font-size="12" font-weight="500">Candya R.</text>
+  <circle cx="1160" cy="24" r="12" fill="#FF7A59"/>
+  <text x="1156" y="28" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold">C</text>
+
+  <rect y="48" width="1200" height="52" fill="#FFFFFF" stroke="#CBD6E2" stroke-width="1"/>
+  <text x="24" y="80" fill="#33475B" font-family="sans-serif" font-size="18" font-weight="bold">Transactions — Pipeline De Vente</text>
+  <rect x="980" y="58" width="190" height="32" rx="4" fill="#FF7A59"/>
+  <text x="1015" y="79" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="bold">+ Transaction</text>
+
+  <!-- Prospection -->
+  <g transform="translate(24, 115)">
+    <rect width="210" height="580" rx="8" fill="#EAF0F6" stroke="#DFE3EB"/>
+    <text x="16" y="30" fill="#33475B" font-family="sans-serif" font-size="13" font-weight="bold">Prospection</text>
+    <rect x="165" y="15" width="25" height="20" rx="10" fill="#FFFFFF"/>
+    <text x="174" y="29" fill="#516F90" font-family="sans-serif" font-size="11" font-weight="bold">2</text>
+    <rect x="10" y="48" width="190" height="110" rx="6" fill="#FFFFFF" stroke="#CBD6E2"/>
+    <text x="20" y="72" fill="#33475B" font-family="sans-serif" font-size="11" font-weight="bold">Assistante admin et</text>
+    <text x="20" y="88" fill="#33475B" font-family="sans-serif" font-size="11" font-weight="bold">support client</text>
+    <text x="20" y="112" fill="#7C98B6" font-family="sans-serif" font-size="10">08/09/2026 - 30/09/2026</text>
+    <line x1="20" y1="125" x2="190" y2="125" stroke="#F5F8FA"/>
+    <text x="20" y="143" fill="#FF7A59" font-family="sans-serif" font-size="11" font-weight="bold">Thomas Laurent</text>
+    <rect x="135" y="132" width="55" height="18" rx="4" fill="#FEF3C7"/>
+    <text x="140" y="145" fill="#B45309" font-family="sans-serif" font-size="9" font-weight="bold">dans 3j</text>
+
+    <rect x="10" y="168" width="190" height="110" rx="6" fill="#FFFFFF" stroke="#CBD6E2"/>
+    <text x="20" y="192" fill="#33475B" font-family="sans-serif" font-size="11" font-weight="bold">Assistante virtuelle admin</text>
+    <text x="20" y="208" fill="#33475B" font-family="sans-serif" font-size="11" font-weight="bold">et support client</text>
+    <text x="20" y="232" fill="#7C98B6" font-family="sans-serif" font-size="10">08/09/2026 - 30/09/2026</text>
+    <line x1="20" y1="245" x2="190" y2="245" stroke="#F5F8FA"/>
+    <text x="20" y="263" fill="#FF7A59" font-family="sans-serif" font-size="11" font-weight="bold">Julien Delorme</text>
+    <text x="125" y="263" fill="#94A3B8" font-family="sans-serif" font-size="9">il y a 34 min</text>
+  </g>
+
+  <!-- Premier Contact -->
+  <g transform="translate(250, 115)">
+    <rect width="210" height="580" rx="8" fill="#EAF0F6" stroke="#DFE3EB"/>
+    <text x="16" y="30" fill="#33475B" font-family="sans-serif" font-size="13" font-weight="bold">Premier Contact</text>
+    <rect x="165" y="15" width="25" height="20" rx="10" fill="#FFFFFF"/>
+    <text x="174" y="29" fill="#516F90" font-family="sans-serif" font-size="11" font-weight="bold">1</text>
+    <rect x="10" y="48" width="190" height="110" rx="6" fill="#FFFFFF" stroke="#CBD6E2"/>
+    <text x="20" y="72" fill="#33475B" font-family="sans-serif" font-size="11" font-weight="bold">Assistante virtuelle SAV</text>
+    <text x="20" y="98" fill="#7C98B6" font-family="sans-serif" font-size="10">08/09/2026 - 30/09/2026</text>
+    <line x1="20" y1="120" x2="190" y2="120" stroke="#F5F8FA"/>
+    <text x="20" y="143" fill="#FF7A59" font-family="sans-serif" font-size="11" font-weight="bold">Lucie Dupont</text>
+    <rect x="135" y="132" width="55" height="18" rx="4" fill="#FEF3C7"/>
+    <text x="140" y="145" fill="#B45309" font-family="sans-serif" font-size="9" font-weight="bold">dans 2j</text>
+  </g>
+
+  <!-- Qualification -->
+  <g transform="translate(476, 115)">
+    <rect width="210" height="580" rx="8" fill="#EAF0F6" stroke="#DFE3EB"/>
+    <text x="16" y="30" fill="#33475B" font-family="sans-serif" font-size="13" font-weight="bold">Qualification</text>
+    <rect x="165" y="15" width="25" height="20" rx="10" fill="#FFFFFF"/>
+    <text x="174" y="29" fill="#516F90" font-family="sans-serif" font-size="11" font-weight="bold">1</text>
+    <rect x="10" y="48" width="190" height="110" rx="6" fill="#FFFFFF" stroke="#CBD6E2"/>
+    <text x="20" y="72" fill="#33475B" font-family="sans-serif" font-size="11" font-weight="bold">Assistante virtuelle Admin</text>
+    <text x="20" y="88" fill="#33475B" font-family="sans-serif" font-size="11" font-weight="bold">et support client</text>
+    <text x="20" y="112" fill="#7C98B6" font-family="sans-serif" font-size="10">08/09/2026 - 30/09/2026</text>
+    <line x1="20" y1="125" x2="190" y2="125" stroke="#F5F8FA"/>
+    <text x="20" y="143" fill="#FF7A59" font-family="sans-serif" font-size="11" font-weight="bold">Élodie Moreau</text>
+  </g>
+
+  <!-- Proposition -->
+  <g transform="translate(702, 115)">
+    <rect width="210" height="580" rx="8" fill="#EAF0F6" stroke="#DFE3EB"/>
+    <text x="16" y="30" fill="#33475B" font-family="sans-serif" font-size="13" font-weight="bold">Proposition de l'offre</text>
+    <rect x="165" y="15" width="25" height="20" rx="10" fill="#FFFFFF"/>
+    <text x="174" y="29" fill="#516F90" font-family="sans-serif" font-size="11" font-weight="bold">1</text>
+    <rect x="10" y="48" width="190" height="110" rx="6" fill="#FFFFFF" stroke="#CBD6E2"/>
+    <text x="20" y="72" fill="#33475B" font-family="sans-serif" font-size="11" font-weight="bold">Assistante virtuelle admin</text>
+    <text x="20" y="98" fill="#7C98B6" font-family="sans-serif" font-size="10">08/09/2026 - 30/09/2026</text>
+    <line x1="20" y1="120" x2="190" y2="120" stroke="#F5F8FA"/>
+    <text x="20" y="143" fill="#FF7A59" font-family="sans-serif" font-size="11" font-weight="bold">Marc Chevalier</text>
+  </g>
+
+  <!-- Gagné -->
+  <g transform="translate(928, 115)">
+    <rect width="245" height="580" rx="8" fill="#EAF0F6" stroke="#DFE3EB"/>
+    <text x="16" y="30" fill="#047857" font-family="sans-serif" font-size="13" font-weight="bold">Gagné (Client Actif)</text>
+    <rect x="195" y="15" width="25" height="20" rx="10" fill="#D1FAE5"/>
+    <text x="204" y="29" fill="#047857" font-family="sans-serif" font-size="11" font-weight="bold">1</text>
+    <rect x="10" y="48" width="225" height="110" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+    <text x="20" y="72" fill="#33475B" font-family="sans-serif" font-size="11" font-weight="bold">Assistante virtuelle admin</text>
+    <text x="20" y="98" fill="#7C98B6" font-family="sans-serif" font-size="10">08/09/2026</text>
+    <line x1="20" y1="120" x2="225" y2="120" stroke="#F5F8FA"/>
+    <text x="20" y="143" fill="#047857" font-family="sans-serif" font-size="11" font-weight="bold">Nina B — Signé</text>
+  </g>
+</svg>

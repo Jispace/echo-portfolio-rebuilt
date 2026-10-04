@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="100%" height="100%">
+  <rect width="1200" height="750" fill="#FFFFFF"/>
+  <rect width="1200" height="60" fill="#FAF8F5" stroke="#CBD6E2" stroke-width="1"/>
+  <circle cx="45" cy="30" r="18" fill="#DFE3EB"/>
+  <text x="35" y="36" fill="#516F90" font-family="sans-serif" font-size="14" font-weight="bold">LD</text>
+  <text x="75" y="28" fill="#2D3E50" font-family="sans-serif" font-size="16" font-weight="bold">Lucie Dupont</text>
+  <rect x="185" y="15" width="80" height="20" rx="10" fill="#FFEDD5"/>
+  <text x="195" y="29" fill="#C2410C" font-family="sans-serif" font-size="11" font-weight="bold">Opportunité</text>
+  <text x="75" y="46" fill="#7C98B6" font-family="sans-serif" font-size="12">lucie30@gmail.com</text>
+
+  <!-- Left Column: Informations clés -->
+  <g transform="translate(24, 80)">
+    <rect width="320" height="640" rx="8" fill="#F5F8FA" stroke="#DFE3EB"/>
+    <text x="20" y="35" fill="#2D3E50" font-family="sans-serif" font-size="14" font-weight="bold">INFORMATIONS CLÉS</text>
+    <text x="20" y="70" fill="#7C98B6" font-family="sans-serif" font-size="11">Propriétaire du contact</text>
+    <text x="20" y="90" fill="#33475B" font-family="sans-serif" font-size="13" font-weight="bold">Candya RANDRIAMANARINA</text>
+
+    <text x="20" y="130" fill="#7C98B6" font-family="sans-serif" font-size="11">Phase du cycle de vie</text>
+    <rect x="20" y="140" width="140" height="24" rx="4" fill="#FFEDD5"/>
+    <text x="28" y="156" fill="#C2410C" font-family="sans-serif" font-size="11" font-weight="bold">Opportunité (Actif)</text>
+
+    <text x="20" y="195" fill="#7C98B6" font-family="sans-serif" font-size="11">Statut du lead</text>
+    <text x="20" y="215" fill="#33475B" font-family="sans-serif" font-size="13" font-weight="bold">Nouveau</text>
+
+    <text x="20" y="255" fill="#7C98B6" font-family="sans-serif" font-size="11">Mode de facturation</text>
+    <text x="20" y="275" fill="#33475B" font-family="sans-serif" font-size="13" font-weight="bold">Mensuel</text>
+
+    <text x="20" y="315" fill="#7C98B6" font-family="sans-serif" font-size="11">Dernier contact</text>
+    <text x="20" y="335" fill="#33475B" font-family="sans-serif" font-size="13" font-weight="bold">08/09/2026 à 08:00 (GMT+3)</text>
+  </g>
+
+  <!-- Center Column: Synthèse Cadrage & Interactions -->
+  <g transform="translate(364, 80)">
+    <!-- Synthèse IA -->
+    <rect width="520" height="250" rx="8" fill="#FAF7F2" stroke="#E8DFD3"/>
+    <text x="24" y="35" fill="#7A583E" font-family="sans-serif" font-size="14" font-weight="bold">Synthèse de cadrage commerciale</text>
+    <text x="380" y="35" fill="#9A8775" font-family="sans-serif" font-size="11">8 septembre 2026</text>
+    
+    <text x="24" y="70" fill="#2D241E" font-family="sans-serif" font-size="12" font-weight="bold">• Besoin identifié :</text>
+    <text x="24" y="92" fill="#5C4D3E" font-family="sans-serif" font-size="12">Lors de l'appel de cadrage du 8 septembre 2026, Lucie souhaite</text>
+    <text x="24" y="112" fill="#5C4D3E" font-family="sans-serif" font-size="12">structurer son offre de conseil et automatiser son suivi.</text>
+
+    <text x="24" y="150" fill="#2D241E" font-family="sans-serif" font-size="12" font-weight="bold">• Documents transmis :</text>
+    <text x="24" y="172" fill="#5C4D3E" font-family="sans-serif" font-size="12">La proposition commerciale et la convention d'accompagnement ont été</text>
+    <text x="24" y="192" fill="#5C4D3E" font-family="sans-serif" font-size="12">envoyées par e-mail le 8 septembre 2026.</text>
+
+    <!-- Interactions récentes -->
+    <g transform="translate(0, 270)">
+      <rect width="520" height="370" rx="8" fill="#FFFFFF" stroke="#DFE3EB"/>
+      <text x="24" y="35" fill="#33475B" font-family="sans-serif" font-size="14" font-weight="bold">Interactions & Tâches sortantes</text>
+      <text x="24" y="70" fill="#516F90" font-family="sans-serif" font-size="12">Le 8 septembre, les besoins étaient clairs et une proposition a été envoyée.</text>
+      <text x="24" y="90" fill="#516F90" font-family="sans-serif" font-size="12">Un suivi est prévu pour confirmer la signature et le rendez-vous.</text>
+
+      <rect x="24" y="120" width="470" height="60" rx="6" fill="#FFFBEB" stroke="#FDE68A"/>
+      <text x="40" y="145" fill="#B45309" font-family="sans-serif" font-size="12" font-weight="bold">Tâche attribuée à Candya RANDRIAMANARINA</text>
+      <text x="40" y="165" fill="#78350F" font-family="sans-serif" font-size="11">Échéance : 10 septembre • Confirmer la signature du contrat</text>
+    </g>
+  </g>
+
+  <!-- Right Column: Transactions -->
+  <g transform="translate(904, 80)">
+    <rect width="270" height="640" rx="8" fill="#F5F8FA" stroke="#DFE3EB"/>
+    <text x="20" y="35" fill="#2D3E50" font-family="sans-serif" font-size="14" font-weight="bold">TRANSACTIONS (1)</text>
+    <rect x="15" y="55" width="240" height="100" rx="6" fill="#FFFFFF" stroke="#CBD6E2"/>
+    <text x="25" y="80" fill="#00A4BD" font-family="sans-serif" font-size="13" font-weight="bold">Assistante virtuelle SAV</text>
+    <text x="25" y="105" fill="#7C98B6" font-family="sans-serif" font-size="11">Phase : Premier Contact</text>
+    <text x="25" y="125" fill="#516F90" font-family="sans-serif" font-size="11">Clôture : 30 septembre 2026</text>
+  </g>
+</svg>
