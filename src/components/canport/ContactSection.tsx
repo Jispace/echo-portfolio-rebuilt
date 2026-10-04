@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { portfolioProfile, servicePlans, getCalendlyUrl } from '../../data/portfolioData';
 import { Mail, Calendar, Linkedin, Send, CheckCircle2, ChevronDown, ExternalLink } from 'lucide-react';
 import { RichTextEditor } from './RichTextEditor';
+import { sendContactEmail } from '@/lib/contact.functions';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 
@@ -28,6 +29,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
   });
   const [botcheck, setBotcheck] = useState(false);
   const [sending, setSending] = useState(false);
+  const [needsHtml, setNeedsHtml] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
