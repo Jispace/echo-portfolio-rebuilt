@@ -26,7 +26,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
     role: '',
     needs: '',
   });
-  const [needsHtml, setNeedsHtml] = useState('');
   const [botcheck, setBotcheck] = useState(false);
   const [sending, setSending] = useState(false);
 
@@ -57,7 +56,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
           formule: selectedPlan,
           activite: formData.role.trim(),
           message: formData.needs,
-          message_html: needsHtml,
           botcheck,
         }),
       });
@@ -65,7 +63,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
       if (res.status === 200 && data?.success) {
         setSubmitted(true);
         setFormData({ name: '', email: '', role: '', needs: '' });
-        setNeedsHtml('');
         setSelectedPlan('');
         setValidationAttempted(false);
       } else {
@@ -395,11 +392,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
 
                     <RichTextEditor
                       id="contact-needs"
-                      value={needsHtml}
+                      value=""
                       invalid={needsInvalid}
                       placeholder="Gestion des emails, retard de facturation, suivi des clients..."
-                      onChange={(html, text) => {
-                        setNeedsHtml(html);
+                      onChange={(_html, text) => {
                         setFormData((prev) => ({ ...prev, needs: text }));
                         if (text && errorMessage) setErrorMessage('');
                       }}
