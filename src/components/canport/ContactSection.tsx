@@ -56,7 +56,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
           formule: selectedPlan,
           activite: formData.role.trim(),
           message: formData.needs,
-          message_html: needsHtml,
           botcheck,
         }),
       });
