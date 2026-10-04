@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { portfolioProfile, servicePlans, getCalendlyUrl } from '../../data/portfolioData';
 import { Mail, Calendar, Linkedin, Send, CheckCircle2, ChevronDown, ExternalLink } from 'lucide-react';
 import { RichTextEditor } from './RichTextEditor';
+import { sendContactEmail } from '@/lib/contact.functions';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 
@@ -28,6 +29,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
   });
   const [botcheck, setBotcheck] = useState(false);
   const [sending, setSending] = useState(false);
+  const [needsHtml, setNeedsHtml] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,32 +46,24 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
     setErrorMessage('');
     setSending(true);
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: '71970cbe-cfc9-4f26-b667-b6f6f2803dcc',
-          subject: `Nouveau message de ${formData.name.trim()} (${selectedPlan})`,
-          from_name: 'Portfolio Candya R.',
+      await sendContactEmail({
+        data: {
+          plan: selectedPlan,
           name: formData.name.trim(),
           email: formData.email.trim(),
-          formule: selectedPlan,
-          activite: formData.role.trim(),
-          message: formData.needs,
-          botcheck,
-        }),
+          role: formData.role.trim(),
+          messageHtml: needsHtml,
+          messageText: formData.needs,
+        },
       });
-      const data = await res.json().catch(() => null);
-      if (res.status === 200 && data?.success) {
-        setSubmitted(true);
-        setFormData({ name: '', email: '', role: '', needs: '' });
-        setSelectedPlan('');
-        setValidationAttempted(false);
-      } else {
-        setErrorMessage(data?.message || "L’envoi a échoué. Veuillez réessayer ou utiliser l’email direct.");
-      }
-    } catch {
-      setErrorMessage("Connexion impossible. Veuillez réessayer ou utiliser l’email direct.");
+      setSubmitted(true);
+      setFormData({ name: '', email: '', role: '', needs: '' });
+      setNeedsHtml('');
+      setSelectedPlan('');
+      setValidationAttempted(false);
+    } catch (error) {
+      console.error('Resend send failed:', error);
+      setErrorMessage("L’envoi a échoué. Veuillez réessayer ou utiliser l’email direct.");
     } finally {
       setSending(false);
     }
@@ -395,7 +389,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking })
                       value=""
                       invalid={needsInvalid}
                       placeholder="Gestion des emails, retard de facturation, suivi des clients..."
-                      onChange={(_html, text) => {
+                      onChange={(html, text) => {
+                        setNeedsHtml(html);
                         setFormData((prev) => ({ ...prev, needs: text }));
                         if (text && errorMessage) setErrorMessage('');
                       }}
