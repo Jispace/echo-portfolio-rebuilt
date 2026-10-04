@@ -66,3 +66,67 @@ export const sendContactEmail = createServerFn({ method: 'POST' })
 
     return { success: true };
   });
+
+const bookingSchema = z.object({
+  plan: z.string().min(1).max(200),
+  name: z.string().min(1).max(100),
+  email: z.string().email().max(255),
+  date: z.string().min(1).max(100),
+  slot: z.string().min(1).max(50),
+  note: z.string().max(2000).optional(),
+});
+
+export const sendBookingEmail = createServerFn({ method: 'POST' })
+  .inputValidator((data) => bookingSchema.parse(data))
+  .handler(async ({ data }) => {
+    const apiKey = process.env['RESEND_API_KEY'];
+    if (!apiKey) {
+      throw new Error('RESEND_API_KEY is not configured');
+    }
+
+    const { plan, name, email, date, slot, note } = data;
+
+    const html = `
+      <div style="font-family: Arial, sans-serif; color: #2D241E; line-height: 1.6;">
+        <h2 style="margin: 0 0 16px;">Nouvelle demande de rendez-vous</h2>
+        <p style="margin: 0 0 8px;"><strong>Formule :</strong> ${escapeHtml(plan)}</p>
+        <p style="margin: 0 0 8px;"><strong>Nom &amp; Prénom :</strong> ${escapeHtml(name)}</p>
+        <p style="margin: 0 0 8px;"><strong>Email professionnel :</strong> ${escapeHtml(email)}</p>
+        <p style="margin: 0 0 8px;"><strong>Créneau souhaité :</strong> ${escapeHtml(date)} — ${escapeHtml(slot)} (heure de Madagascar, UTC+3)</p>
+        ${
+          note
+            ? `<p style="margin: 0 0 8px;"><strong>Message :</strong></p>
+        <div style="border: 1px solid #E8E1D5; border-radius: 12px; padding: 16px; background: #FAF7F2;">
+          ${escapeHtml(note).replace(/\n/g, '<br>')}
+        </div>`
+            : ''
+        }
+      </div>
+    `;
+
+    const text = `Formule : ${plan}\nNom : ${name}\nEmail : ${email}\nCréneau souhaité : ${date} — ${slot} (UTC+3)${note ? `\n\nMessage :\n${note}` : ''}`;
+
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        from: 'Portfolio Candya <onboarding@resend.dev>',
+        to: ['rancandya@gmail.com'],
+        reply_to: email,
+        subject: `Demande de RDV de ${name} — ${date} ${slot}`,
+        html,
+        text,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      console.error(`Resend request failed [${response.status}]: ${errorBody}`);
+      throw new Error(`Resend request failed [${response.status}]: ${errorBody}`);
+    }
+
+    return { success: true };
+  });
