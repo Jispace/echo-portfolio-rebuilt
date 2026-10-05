@@ -66,16 +66,6 @@ function buildUpcomingDays(nowMs: number, count = 3): DayOption[] {
 
 const CALENDLY_EVENT_URL = 'https://calendly.com/rancandya/appel-decouverte-candya';
 
-/** Calendly link that opens directly on the chosen time slot, prefilled. */
-function buildCalendlySlotUrl(dayKey: string, slot: string, info: { name?: string; email?: string; note?: string }) {
-  const start = `${dayKey}T${slot.slice(0, 5)}:00+03:00`;
-  const params = new URLSearchParams({ month: dayKey.slice(0, 7), date: dayKey });
-  if (info.name) params.set('name', info.name);
-  if (info.email) params.set('email', info.email);
-  if (info.note) params.set('a1', info.note);
-  params.set('utm_source', 'portfolio');
-  return `${CALENDLY_EVENT_URL}/${start}?${params.toString()}`;
-}
 
 
 const DEFAULT_PLAN = 'Organisation Administrative';
@@ -409,15 +399,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
                   </div>
                 </div>
 
-                {blockedUrl && (
+                {errorMessage && (
                   <div role="alert" className="mt-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex gap-2">
                     <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" aria-hidden="true" />
                     <div>
-                      <p className="font-bold">Votre navigateur a bloqué l'ouverture de Calendly.</p>
-                      <p className="mt-0.5">Votre créneau est prêt : ouvrez-le avec le lien ci-dessous pour confirmer.</p>
-                      <a href={blockedUrl} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex min-h-11 items-center gap-1 font-bold underline underline-offset-2">
-                        Ouvrir Calendly pour confirmer <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-                      </a>
+                      <p className="font-bold">L'envoi a échoué.</p>
+                      <p className="mt-0.5">{errorMessage}</p>
                     </div>
                   </div>
                 )}
