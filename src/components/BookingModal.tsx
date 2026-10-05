@@ -409,15 +409,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
                   </div>
                 </div>
 
-                {blockedUrl && (
+                {errorMessage && (
                   <div role="alert" className="mt-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex gap-2">
                     <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" aria-hidden="true" />
                     <div>
-                      <p className="font-bold">Votre navigateur a bloqué l'ouverture de Calendly.</p>
-                      <p className="mt-0.5">Votre créneau est prêt : ouvrez-le avec le lien ci-dessous pour confirmer.</p>
-                      <a href={blockedUrl} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex min-h-11 items-center gap-1 font-bold underline underline-offset-2">
-                        Ouvrir Calendly pour confirmer <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-                      </a>
+                      <p className="font-bold">L'envoi a échoué.</p>
+                      <p className="mt-0.5">{errorMessage}</p>
                     </div>
                   </div>
                 )}
