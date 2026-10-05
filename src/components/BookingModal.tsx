@@ -179,7 +179,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
   );
 
   return (
-    <AnimatePresence>
+    <>
+      <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-end justify-center overflow-hidden sm:items-center sm:p-6">
           <motion.div
