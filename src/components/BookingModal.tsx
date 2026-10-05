@@ -436,6 +436,29 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+      </AnimatePresence>
+
+      <Dialog
+        open={confirmLabel !== ''}
+        onOpenChange={(open) => {
+          if (!open) setConfirmLabel('');
+        }}
+      >
+        <DialogContent className="max-w-md rounded-lg border-[#E8E1D5] bg-[#FDFBF7] text-[#2D241E]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-emerald-600" aria-hidden="true" />
+              Demande de rendez-vous envoyée !
+            </DialogTitle>
+            <DialogDescription>
+              {confirmLabel ? `Demande envoyée pour le ${confirmLabel}. Candya vous confirme le créneau par email très vite.` : ''}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="gap-2 sm:space-x-0">
+            <Button type="button" variant="outline" onClick={() => setConfirmLabel('')}>Fermer</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
