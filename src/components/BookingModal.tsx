@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Check, CheckCircle2, Clock, ShieldCheck, ArrowRight, User, Mail, MessageSquare, ExternalLink, Loader2, AlertTriangle } from 'lucide-react';
+import { X, Check, CheckCircle2, Clock, ShieldCheck, ArrowRight, User, Mail, ExternalLink, Loader2, AlertTriangle } from 'lucide-react';
 import { servicePlans } from '../data/portfolioData';
 import { useScrollLock } from '../hooks/use-scroll-lock';
 import { sendBookingEmail } from '../lib/contact.functions';
+import { RichTextEditor } from './canport/RichTextEditor';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -81,10 +84,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
   const [step, setStep] = useState<Step>(1);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [note, setNote] = useState('');
+  const [noteHtml, setNoteHtml] = useState('');
+  const [noteText, setNoteText] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [sentMessage, setSentMessage] = useState('');
+  const [confirmLabel, setConfirmLabel] = useState('');
 
   useEffect(() => {
     setSelectedPlan(resolvePlan(initialPlan));
@@ -112,7 +116,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
     setStep(1);
     setName('');
     setEmail('');
-    setNote('');
+    setNoteHtml('');
+    setNoteText('');
     setSelectedDayKey('');
     setSelectedSlot('');
     setSelectedPlan(resolvePlan(initialPlan));
@@ -139,12 +144,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
           email: email.trim(),
           date: currentDayConfig.date,
           slot: selectedSlot,
-          note: note.trim() || undefined,
+          messageHtml: noteHtml || undefined,
+          messageText: noteText || undefined,
         },
       });
       resetForm();
-      setSentMessage(`Demande envoyée pour le ${label}. Candya vous confirme le créneau par email très vite.`);
-      window.setTimeout(() => setSentMessage(''), 8000);
+      onClose();
+      setConfirmLabel(label);
     } catch {
       setIsSending(false);
       setErrorMessage("L'envoi a échoué. Réessayez, ou réservez directement sur Calendly avec le lien ci-dessus.");
@@ -153,7 +159,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
 
   const handleClose = () => {
     resetForm();
-    setSentMessage('');
     onClose();
   };
 
@@ -174,7 +179,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
   );
 
   return (
-    <AnimatePresence>
+    <>
+      <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-end justify-center overflow-hidden sm:items-center sm:p-6">
           <motion.div
@@ -202,13 +208,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
             >
               <X className="w-5 h-5" />
             </button>
-
-            {sentMessage && (
-              <div role="status" className="clear-both mb-3 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 shrink-0" />
-                <span>{sentMessage}</span>
-              </div>
-            )}
 
             <div className="clear-both sm:clear-none">
               <div className="flex items-start gap-2 pr-1 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-[#7A583E] mb-2">
@@ -390,12 +389,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="booking-input-note" className="text-xs font-bold text-[#473B30] block mb-1">Votre activité & ce qui vous pèse (optionnel)</label>
-                    <div className="relative">
-                      <MessageSquare className="w-4 h-4 text-[#8C7A68] absolute left-3.5 top-3" aria-hidden="true" />
-                      <textarea id="booking-input-note" rows={2} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Ex: Coach business, 150 emails/jour à trier, retards de paiement..."
-                        className="w-full pl-10 pr-4 py-2 rounded-xl bg-white border border-[#DCD1C4] text-sm text-[#2D241E] focus:outline-hidden focus:border-[#7A583E] focus-visible:ring-2 focus-visible:ring-[#A87C51]/40" />
-                    </div>
+                    <label className="text-xs font-bold text-[#473B30] block mb-1">Votre activité & ce qui vous pèse (optionnel)</label>
+                    <RichTextEditor
+                      id="booking-input-note"
+                      value={noteHtml}
+                      placeholder="Ex: Coach business, 150 emails/jour à trier, retards de paiement..."
+                      onChange={(html, text) => {
+                        setNoteHtml(html);
+                        setNoteText(text);
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -434,6 +437,29 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+      </AnimatePresence>
+
+      <Dialog
+        open={confirmLabel !== ''}
+        onOpenChange={(open) => {
+          if (!open) setConfirmLabel('');
+        }}
+      >
+        <DialogContent className="max-w-md rounded-lg border-[#E8E1D5] bg-[#FDFBF7] text-[#2D241E]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-emerald-600" aria-hidden="true" />
+              Demande de rendez-vous envoyée !
+            </DialogTitle>
+            <DialogDescription>
+              {confirmLabel ? `Demande envoyée pour le ${confirmLabel}. Candya vous confirme le créneau par email très vite.` : ''}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="gap-2 sm:space-x-0">
+            <Button type="button" variant="outline" onClick={() => setConfirmLabel('')}>Fermer</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
