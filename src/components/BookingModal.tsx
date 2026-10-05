@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Check, CheckCircle2, Clock, ShieldCheck, ArrowRight, User, Mail, MessageSquare, ExternalLink, Loader2, AlertTriangle } from 'lucide-react';
+import { X, Check, CheckCircle2, Clock, ShieldCheck, ArrowRight, User, Mail, ExternalLink, Loader2, AlertTriangle } from 'lucide-react';
 import { servicePlans } from '../data/portfolioData';
 import { useScrollLock } from '../hooks/use-scroll-lock';
 import { sendBookingEmail } from '../lib/contact.functions';
+import { RichTextEditor } from './canport/RichTextEditor';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -81,10 +84,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
   const [step, setStep] = useState<Step>(1);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [note, setNote] = useState('');
+  const [noteHtml, setNoteHtml] = useState('');
+  const [noteText, setNoteText] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [sentMessage, setSentMessage] = useState('');
+  const [confirmLabel, setConfirmLabel] = useState('');
 
   useEffect(() => {
     setSelectedPlan(resolvePlan(initialPlan));
