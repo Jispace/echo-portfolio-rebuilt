@@ -116,7 +116,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
     setStep(1);
     setName('');
     setEmail('');
-    setNote('');
+    setNoteHtml('');
+    setNoteText('');
     setSelectedDayKey('');
     setSelectedSlot('');
     setSelectedPlan(resolvePlan(initialPlan));
@@ -143,12 +144,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
           email: email.trim(),
           date: currentDayConfig.date,
           slot: selectedSlot,
-          note: note.trim() || undefined,
+          messageHtml: noteHtml || undefined,
+          messageText: noteText || undefined,
         },
       });
       resetForm();
-      setSentMessage(`Demande envoyée pour le ${label}. Candya vous confirme le créneau par email très vite.`);
-      window.setTimeout(() => setSentMessage(''), 8000);
+      onClose();
+      setConfirmLabel(label);
     } catch {
       setIsSending(false);
       setErrorMessage("L'envoi a échoué. Réessayez, ou réservez directement sur Calendly avec le lien ci-dessus.");
@@ -157,7 +159,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, ini
 
   const handleClose = () => {
     resetForm();
-    setSentMessage('');
     onClose();
   };
 
