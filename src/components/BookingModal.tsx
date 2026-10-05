@@ -66,16 +66,6 @@ function buildUpcomingDays(nowMs: number, count = 3): DayOption[] {
 
 const CALENDLY_EVENT_URL = 'https://calendly.com/rancandya/appel-decouverte-candya';
 
-/** Calendly link that opens directly on the chosen time slot, prefilled. */
-function buildCalendlySlotUrl(dayKey: string, slot: string, info: { name?: string; email?: string; note?: string }) {
-  const start = `${dayKey}T${slot.slice(0, 5)}:00+03:00`;
-  const params = new URLSearchParams({ month: dayKey.slice(0, 7), date: dayKey });
-  if (info.name) params.set('name', info.name);
-  if (info.email) params.set('email', info.email);
-  if (info.note) params.set('a1', info.note);
-  params.set('utm_source', 'portfolio');
-  return `${CALENDLY_EVENT_URL}/${start}?${params.toString()}`;
-}
 
 
 const DEFAULT_PLAN = 'Organisation Administrative';
